@@ -153,7 +153,7 @@ export default {
   }
 }
 
-.home {
+.MainTicket {
   overflow-x: hidden;
 
   &__filters {

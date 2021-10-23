@@ -10,7 +10,7 @@
 						:alt="flight.validating_carrier"
 					/>
 					<span class="card-flight__airline-name">
-						<!-- {{ flight.itineraries[0][0].carrier_name }} -->
+						{{ flight.itineraries[0][0].carrier_name }}
 					</span>
 				</div>
 
@@ -18,10 +18,10 @@
 				<div class="card-flight__date-wrapper">
 					<div class="card-flight__date">
 						<div class="card-flight__date-day">
-							<!-- {{ flight.itineraries[0][0].dep_date | date('month-week') }} -->
+							{{ momentMonth }}
 						</div>
 						<div class="card-flight__date-time">
-							<!-- {{ flight.itineraries[0][0].dep_date | date('time') }} -->
+							{{ momentTime }}
 						</div>
 					</div>
 
@@ -52,10 +52,10 @@
 
 					<div class="card-flight__date">
 						<div class="card-flight__date-day">
-							<!-- {{ flight.itineraries[0][0].arr_date | date('month-week') }} -->
+							{{ momentArrMonth }}
 						</div>
 						<div class="card-flight__date-time">
-							<!-- {{ flight.itineraries[0][0].arr_date | date('time') }} -->
+							{{ momentArrTime }}
 						</div>
 					</div>
 				</div>
@@ -69,7 +69,7 @@
 				</div>
 				<div class="card-flight__recovery">
 					<span class="card-flight__text">
-						<!-- {{ flight.refundable ? 'возвратный' : 'невозвратный' }} -->
+						{{ flight.refundable ? 'возвратный' : 'невозвратный' }}
 					</span>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 
 		<div class="card-flight__col-right">
 			<div class="card-flight__price ta-center">
-				<!-- {{ flight.price | thousandSeparator }} ₸ -->
+				{{ flight.price  }} ₸
 			</div>
 			<button class="card-flight__btn-buy">Выбрать</button>
 			<div class="card-flight__text-additional ta-center">
@@ -98,10 +98,9 @@
 </template>
 
 <script>
-// import thousandSeparatorFilter from '@/filter/thousand-separator.filter';
-// import momentFilter from '@/filter/moment.filter';
-// import VueNumeric from 'vue-numeric'
-// import VueMoment from 'vue-moment'
+import thousandSeparatorFilter from './filters/thousand-separator.filter';
+import momentFilter from './filters/moment.filter';
+import moment from 'moment';
 
 export default {
 	name: 'CardFlight',
@@ -111,10 +110,10 @@ export default {
 			required: true
 		}
 	},
-	// filters: {
-	// 	thousandSeparator: VueNumeric,
-	// 	date: VueMoment
-	// },
+	filters: {
+		thousandSeparator: thousandSeparatorFilter,
+		date: momentFilter
+	},
 	computed: {
 		isDirect() {
 			return this.flight.itineraries[0][0].stops === 0;
@@ -125,6 +124,22 @@ export default {
 		lastSegment() {
 			const segmentsLength = this.flight.itineraries[0][0].segments.length;
 			return this.flight.itineraries[0][0].segments[segmentsLength - 1];
+		},
+		momentMonth(){
+			var d = new Date(this.flight.itineraries[0][0].dep_date);
+			return moment(d).format('MMM  D ddd');
+		},
+		momentTime(){
+			var d = new Date(this.flight.itineraries[0][0].dep_date);
+			return moment(d).format('LT');
+		},
+		momentArrMonth(){
+			var d = new Date(this.flight.itineraries[0][0].arr_date);
+			return moment(d).format('MMM  D ddd');
+		},
+		momentArrTime(){
+			var d = new Date(this.flight.itineraries[0][0].arr_date);
+			return moment(d).format('LT');
 		}
 	},
 	methods: {

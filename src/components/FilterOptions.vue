@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import checkArraysEqualFunction from '@/functions/check-arrays-equal.function';
+import checkArraysEqualFunction from './functions/check-arrays-equal.function';
 
 export default {
 	name: 'FilterOptions',

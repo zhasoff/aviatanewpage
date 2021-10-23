@@ -9,7 +9,7 @@
 
 <!--      </div>-->
 <!--    </div>-->
-    <SearchTicket />
+    <!-- <SearchTicket /> -->
     <MainTicket />
 
   </div>
@@ -17,13 +17,13 @@
 
 <script>
 // @ is an alias to /src
-import SearchTicket from '@/components/SearchTicket.vue'
+// import SearchTicket from '@/components/SearchTicket.vue'
 import MainTicket from "@/components/MainTicket";
 
 export default {
   name: 'Home',
   components: {
-    SearchTicket,
+    // SearchTicket,
     MainTicket,
   },
   props: {
