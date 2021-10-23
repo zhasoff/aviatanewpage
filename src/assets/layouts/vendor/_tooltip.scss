@@ -1,0 +1,78 @@
+.tooltip {
+	display: block !important;
+	z-index: 10000;
+
+	.tooltip-inner {
+		padding: 12px;
+		font-size: 12px;
+		line-height: 16px;
+		background: #fff;
+		border: 1px solid #e1e1e1;
+		border-radius: 6px;
+	}
+
+	.tooltip-arrow {
+		position: absolute;
+		z-index: 1;
+		width: 14px;
+		height: 14px;
+		background: #fff;
+		transform: rotate(45deg);
+	}
+
+	&[x-placement^='top'] {
+		margin-bottom: 12px;
+
+		.tooltip-arrow {
+			bottom: -6.5px;
+			left: calc(50% - 5px);
+			border-right: 1px solid #e1e1e1;
+			border-bottom: 1px solid #e1e1e1;
+		}
+	}
+
+	&[x-placement^='bottom'] {
+		margin-top: 12px;
+
+		.tooltip-arrow {
+			top: -6.5px;
+			left: calc(50% - 5px);
+			border-top: 1px solid #e1e1e1;
+			border-left: 1px solid #e1e1e1;
+		}
+	}
+
+	&[x-placement^='right'] {
+		margin-left: 12px;
+
+		.tooltip-arrow {
+			top: calc(50% - 5px);
+			left: -6.5px;
+			border-bottom: 1px solid #e1e1e1;
+			border-left: 1px solid #e1e1e1;
+		}
+	}
+
+	&[x-placement^='left'] {
+		margin-right: 12px;
+
+		.tooltip-arrow {
+			top: calc(50% - 5px);
+			right: -6.5px;
+			border-top: 1px solid #e1e1e1;
+			border-right: 1px solid #e1e1e1;
+		}
+	}
+
+	&[aria-hidden='true'] {
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity 0.15s, visibility 0.15s;
+	}
+
+	&[aria-hidden='false'] {
+		visibility: visible;
+		opacity: 1;
+		transition: opacity 0.15s;
+	}
+}

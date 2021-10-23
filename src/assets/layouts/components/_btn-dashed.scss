@@ -1,0 +1,23 @@
+.btn-dashed {
+	position: relative;
+	font-size: 12px;
+	line-height: 16px;
+	color: #7284e4;
+
+	&:after {
+		content: '';
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		border-bottom: 1px dashed #7284e4;
+	}
+
+	&:hover:after {
+		border-bottom: none;
+	}
+
+	&:focus:after {
+		border-bottom: none;
+	}
+}

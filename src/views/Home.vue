@@ -1,18 +1,37 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!--    <div class="button-options">-->
+<!--      <div class="button-options-track">-->
+<!--        <button type="button" class="btn btn-primary">Primary</button>-->
+<!--        <button type="button" class="btn btn-primary">Primary</button>-->
+<!--      </div>-->
+<!--      <div class="button-options-price">-->
+
+<!--      </div>-->
+<!--    </div>-->
+    <SearchTicket />
+    <MainTicket />
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import SearchTicket from '@/components/SearchTicket.vue'
+import MainTicket from "@/components/MainTicket";
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
-  }
+    SearchTicket,
+    MainTicket,
+  },
+  props: {
+    msg: String,
+  },
+
 }
 </script>
+<style>
+
+</style>
