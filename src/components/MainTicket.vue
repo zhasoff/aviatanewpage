@@ -1,6 +1,6 @@
 <template>
   <div class="MainTicket">
-    <button class="home__btn-show" @click="showFilter = !showFilter">
+    <button class="MainTicket-button-view" @click="showFilter = !showFilter">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 384" fill="#FFF">
         <path
             d="M85.333 170.67H0v42.66h85.333V256H128V128H85.333zM0 298.67h128v42.667H0zM0 42.667h213.33v42.667H0zM170.67 170.67H384v42.667H170.67zM298.67 42.667V0H256v128h42.67V85.333H384V42.667zM213.33 256h-42.66v128h42.66v-42.67H384v-42.66H213.33z"
@@ -11,12 +11,12 @@
 
     <div
         v-if="showFilter"
-        class="home__overlay"
+        class="MainTicket-wer"
         @click="showFilter = false"
     ></div>
 
     <div class="flex">
-      <div class="home__filters" :class="{ home__filters_active: showFilter }">
+      <div class="MainTicket__filters" :class="{ MainTicket__filters_active: showFilter }">
         <!-- tariff -->
         <FilterOptions
             title="Опции тарифа"
@@ -26,7 +26,6 @@
             @reset="filter.tariff = []"
         />
 
-        <!-- airlines -->
         <FilterOptions
             title="Авиакомпании"
             :value="filter.airlines"
@@ -43,17 +42,16 @@
         </button>
       </div>
 
-      <div class="home__results">
+      <div class="MainTicket-result">
         <CardFlight
             v-for="flight in filteredFlights"
             :key="flight.id"
             :flight="flight"
         />
 
-        <!-- when results are empty -->
         <p
             v-if="!filteredFlights.length"
-            class="home__text home__ ta-center fw-600"
+            class="MainTicket-text MainTicket ta-center fw-600"
         >
           Ничего не найдено
         </p>
@@ -145,6 +143,9 @@ export default {
 <style lang="scss">
 @import '../assets/layouts/abstracts/_variables.scss';
 
+.flex {
+  margin-top: 23px;
+}
 .filter-airlines {
   padding-bottom: 16px;
 
@@ -165,19 +166,19 @@ export default {
     }
   }
 
-  &__results {
+  &-result {
     flex-grow: 1;
   }
 
-  &__text {
+  &-text {
     font-size: 14px;
   }
 
-  &__btn-show {
+  &-button-view {
     display: none;
   }
 
-  &__overlay {
+  &-wer {
     position: fixed;
     z-index: 1;
     top: 0;
@@ -215,7 +216,7 @@ export default {
       }
     }
 
-    &__btn-show {
+    &-button-view {
       display: flex;
       align-items: center;
       margin-bottom: 16px;

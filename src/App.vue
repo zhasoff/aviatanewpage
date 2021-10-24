@@ -1,23 +1,25 @@
 <template>
   <div id="app">
-      <div class="container">
+<!--      <div class="container">-->
 <!--        <router-link to="/">Home</router-link> |-->
 <!--        <router-link to="/about">About</router-link>-->
         <router-view/>
-      </div>
+<!--      </div>-->
   </div>
 </template>
 
-<style>
+<style lang="scss">
 body {
-  background-color: #D7D7D7;
+    background-color: #D7D7D7;
 }
 #app {
-  font-family: Arial;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*text-align: center;*/
-
+  /*padding: 44px 0;*/
   max-width: 1140px;
   margin: 0 auto;
 }

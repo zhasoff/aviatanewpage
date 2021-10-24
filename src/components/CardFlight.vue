@@ -32,6 +32,8 @@
 							</div>
 							<div class="card-flight__relocation-time">
 								{{ getTime(flight.best_time) }}
+                {{momentTime}}
+<!--                {{ momentHour }}-->
 							</div>
 							<div class="card-flight__relocation-city">
 								{{ lastSegment.dest_code }}
@@ -98,9 +100,9 @@
 </template>
 
 <script>
-import thousandSeparatorFilter from './filters/thousand-separator.filter';
-import momentFilter from './filters/moment.filter';
 import moment from 'moment';
+import 'moment/locale/ru';
+moment.locale('ru');
 
 export default {
 	name: 'CardFlight',
@@ -109,10 +111,6 @@ export default {
 			type: Object,
 			required: true
 		}
-	},
-	filters: {
-		thousandSeparator: thousandSeparatorFilter,
-		date: momentFilter
 	},
 	computed: {
 		isDirect() {
@@ -127,7 +125,7 @@ export default {
 		},
 		momentMonth(){
 			var d = new Date(this.flight.itineraries[0][0].dep_date);
-			return moment(d).format('MMM  D ddd');
+			return moment(d).format('D MMM dd');
 		},
 		momentTime(){
 			var d = new Date(this.flight.itineraries[0][0].dep_date);
@@ -135,12 +133,16 @@ export default {
 		},
 		momentArrMonth(){
 			var d = new Date(this.flight.itineraries[0][0].arr_date);
-			return moment(d).format('MMM  D ddd');
+			return moment(d).format('D MMM dd');
 		},
 		momentArrTime(){
 			var d = new Date(this.flight.itineraries[0][0].arr_date);
 			return moment(d).format('LT');
-		}
+		},
+    momentHour(){
+      var dd = new Date(this.flight.best_time);
+      return moment(dd).format('hh');
+    }
 	},
 	methods: {
 		getTime(seconds) {
@@ -227,7 +229,7 @@ export default {
 			width: 16px;
 			height: 16px;
 			margin-right: 7px;
-			background: url('~@/assets/images/recovery.svg') center no-repeat;
+			background: url('../assets/images/recovery.svg') center no-repeat;
 			background-size: contain;
 		}
 	}

@@ -1,14 +1,13 @@
 <template>
-	<div class="filter-options">
-		<div class="filter-options__heading">
-			<strong class="filter-options__title">{{ title }}</strong>
-
+	<div class="sort-options">
+		<div class="sort-options-head">
+			<strong class="sort-options-type">{{ title }}</strong>
 			<button
 				v-tooltip="{
 					content: 'Сбросить выбор',
-					classes: ['filter-tooltip']
+					classes: ['clear-filter']
 				}"
-				class="filter-options__btn-reset"
+				class="sort-options-button-res"
 				@click="$emit('reset')"
 			>
 				<svg
@@ -29,14 +28,12 @@
 		</div>
 
 		<PerfectScrollbar>
-			<!-- all option -->
 			<label v-if="allOption" class="checkbox">
 				<input type="checkbox" @change="selectAll" :checked="areAllChecked" />
 				<span class="checkbox__mark"></span>
 				Все
 			</label>
 
-			<!-- options -->
 			<label v-for="(option, i) in options" :key="i" class="checkbox">
 				<input type="checkbox" v-model="model" :value="option" />
 				<span class="checkbox__mark"></span>
@@ -47,7 +44,7 @@
 </template>
 
 <script>
-import checkArraysEqualFunction from './functions/check-arrays-equal.function';
+import checkArraysEqualFunction from './functions/array-equal';
 
 export default {
 	name: 'FilterOptions',
@@ -105,14 +102,16 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/layouts/abstracts/_variables.scss";
-.filter-options {
-	max-width: 240px;
-	padding: 12px 0;
-	background-color: $bg-filter;
-	border-radius: 4px;
+@import '../assets/layouts/abstracts/_variables.scss';
 
-	&__heading {
+.sort-options {
+  max-width: 240px;
+  padding: 12px 0;
+  background-color: $bg-filter;
+  border-radius: 4px;
+  margin-bottom: 12px;
+
+	&-head {
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
@@ -120,14 +119,14 @@ export default {
 		padding: 0 12px;
 	}
 
-	&__title {
+	&-type {
 		display: block;
 		font-size: 14px;
 		line-height: 20px;
 		font-weight: 700;
 	}
 
-	&__btn-reset {
+	&-button-res {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -155,7 +154,7 @@ export default {
 		}
 	}
 
-	&:hover &__btn-reset {
+	&:hover &-button-res {
 		opacity: 1;
 	}
 
@@ -179,15 +178,9 @@ export default {
 			}
 		}
 	}
-
-	@media screen and (max-width: 880px) {
-		&__btn-reset {
-			opacity: 1 !important;
-		}
-	}
 }
 
-.filter-tooltip {
+.clear-filter {
 	&[x-placement^='top'] {
 		margin-bottom: 22px !important;
 	}
