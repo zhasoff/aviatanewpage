@@ -32,8 +32,7 @@
 							</div>
 							<div class="card-flight__relocation-time">
 								{{ getTime(flight.best_time) }}
-                {{momentTime}}
-<!--                {{ momentHour }}-->
+<!--                {{momentTime}}-->
 							</div>
 							<div class="card-flight__relocation-city">
 								{{ lastSegment.dest_code }}
@@ -139,10 +138,10 @@ export default {
 			var d = new Date(this.flight.itineraries[0][0].arr_date);
 			return moment(d).format('LT');
 		},
-    momentHour(){
-      var dd = new Date(this.flight.best_time);
-      return moment(dd).format('hh');
-    }
+    // momentHour(){
+    //   var dd = new Date(this.flight.best_time);
+    //   return moment(dd).format('hh');
+    // }
 	},
 	methods: {
 		getTime(seconds) {
